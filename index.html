@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TradeConnect | Find a Trusted Local Pro</title>
+  <meta name="description" content="Find a plumber, electrician, handyman or other trusted local professional.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="#">Trade<span>Connect</span></a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#pros">For professionals</a>
+      <a href="#request" class="nav-btn">Get a quote</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="badge">🇿🇦 Local trades, made simple</div>
+        <h1>Need a <span>tradesperson?</span><br>We'll help you find one.</h1>
+        <p>Tell us what you need. We connect you with local plumbers, electricians, handymen and more.</p>
+        <a href="#request" class="primary-btn">Request a tradesperson →</a>
+        <p class="small">No obligation. Free to request a quote.</p>
+      </div>
+      <div class="hero-card">
+        <div class="card-icon">🔧</div>
+        <h3>What do you need?</h3>
+        <div class="service-grid">
+          <button onclick="selectService('Plumber')">🚿<span>Plumber</span></button>
+          <button onclick="selectService('Electrician')">⚡<span>Electrician</span></button>
+          <button onclick="selectService('Handyman')">🛠️<span>Handyman</span></button>
+          <button onclick="selectService('Painter')">🎨<span>Painter</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="section-title">
+        <div class="eyebrow">HOW IT WORKS</div>
+        <h2>Three simple steps.</h2>
+      </div>
+      <div class="steps">
+        <div><b>01</b><h3>Tell us the job</h3><p>Choose a service and describe what needs to be done.</p></div>
+        <div><b>02</b><h3>Get matched</h3><p>We'll match your request with suitable local professionals.</p></div>
+        <div><b>03</b><h3>Choose your pro</h3><p>Compare responses and choose who you want to work with.</p></div>
+      </div>
+    </section>
+
+    <section id="request" class="request-section">
+      <div>
+        <div class="eyebrow">REQUEST A QUOTE</div>
+        <h2>What do you need help with?</h2>
+        <p>Submit a job request. This demo stores the request in your browser only; a database and professional matching system can be added next.</p>
+      </div>
+      <form id="jobForm">
+        <label>Service
+          <select id="service" required>
+            <option value="">Choose a service</option>
+            <option>Plumber</option>
+            <option>Electrician</option>
+            <option>Handyman</option>
+            <option>Painter</option>
+            <option>Roofer</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Suburb / Area
+          <input id="area" placeholder="e.g. Pretoria East" required>
+        </label>
+        <label>Describe the job
+          <textarea id="details" rows="4" placeholder="Tell us what is wrong or what you need..." required></textarea>
+        </label>
+        <label>Urgency
+          <select id="urgency">
+            <option>Whenever possible</option>
+            <option>Within a few days</option>
+            <option>Urgent - today</option>
+          </select>
+        </label>
+        <button class="primary-btn" type="submit">Submit request →</button>
+        <div id="success" class="success" hidden>Request received! In the full version, matched professionals would now be notified.</div>
+      </form>
+    </section>
+
+    <section id="pros" class="pro-section">
+      <div>
+        <div class="eyebrow">FOR PROFESSIONALS</div>
+        <h2>More jobs. Less chasing.</h2>
+        <p>Professionals can create a profile, choose their service areas and receive relevant customer leads.</p>
+        <button class="secondary-btn" onclick="alert('Professional signup is coming in the next version.')">Join as a professional</button>
+      </div>
+      <div class="pro-card">
+        <div class="pro-row"><span>New lead</span><strong>2 min ago</strong></div>
+        <h3>⚡ Electrical fault</h3>
+        <p>Pretoria East · Urgent</p>
+        <div class="lead-bottom"><span>3 professionals matched</span><button>View lead</button></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="logo">Trade<span>Connect</span></div>
+    <p>Connecting South Africans with local trades.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
