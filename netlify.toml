@@ -1,0 +1,18 @@
+# Static site: no build step, files are served straight from the repo root.
+[build]
+  publish = "."
+
+# Sensible baseline security headers. No Content-Security-Policy is set here
+# because the page loads Google Fonts and inline styles; adding one without
+# accounting for those would break rendering.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Asset filenames are not content-hashed (style.css, script.js, local-pro.svg
+# keep the same URL across deploys), so no long-lived immutable caching is set —
+# that would serve stale CSS after a push. Netlify's ETag revalidation already
+# makes repeat visits cheap.
