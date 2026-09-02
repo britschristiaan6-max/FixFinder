@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join as a trade professional | TradeConnect</title>
+  <meta name="description" content="Create a free TradeConnect profile and get local job leads in your trade. Set your areas, rates and experience, then publish when you're ready.">
+  <link rel="canonical" href="https://fixfinder-sa.netlify.app/for-pros.html">
+  <meta name="theme-color" content="#f7f5ef">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TradeConnect">
+  <meta property="og:url" content="https://fixfinder-sa.netlify.app/for-pros.html">
+  <meta property="og:title" content="Join TradeConnect as a professional">
+  <meta property="og:description" content="Create a free profile and get local job leads in your trade.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l2 6.5 6.5 2-6.5 2-2 6.5-2-6.5L3.5 11.5l6.5-2L12 3Z"/></symbol>
+      <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4.5 21 20H3l9-15.5Z"/><path d="M12 10v4.5"/><path d="M12 17.2v.3"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="nav">
+    <a class="logo" href="/" aria-label="TradeConnect home"><span class="logo-mark" aria-hidden="true">TC</span>tradeconnect</a>
+    <nav aria-label="Main navigation">
+      <a href="find-a-pro.html">Find a pro</a><a href="index.html#how" class="nav-hide-sm">How it works</a><a href="for-pros.html" aria-current="page">For pros</a>
+      <span class="nav-account" id="navAccount" hidden>
+        <span class="nav-account-name" id="navAccountName"></span>
+        <button class="nav-signout" id="signOutButton" type="button">Sign out</button>
+      </span>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- Shown while we check whether there is an existing session. -->
+    <div class="page-body" id="portalLoading">
+      <div class="skeleton-card" style="max-width:470px"><div class="skeleton-line short"></div><div class="skeleton-line wide"></div><div class="skeleton-line wide"></div><div class="skeleton-line mid"></div></div>
+    </div>
+
+    <!-- STATE 1 — no session: pitch plus signup / sign in. -->
+    <div id="signedOutView" hidden>
+      <div class="page-head">
+        <p class="kicker"><i aria-hidden="true"></i> FOR TRADE PROFESSIONALS</p>
+        <h1>Work that comes <em>to you.</em></h1>
+        <p class="lede">Create a profile, tell us the trades and areas you cover, and appear in the directory homeowners search. Free to list — no commission on the work you win.</p>
+      </div>
+
+      <div class="page-body">
+        <div class="portal-layout">
+          <div class="auth-card">
+            <div class="auth-tabs" role="tablist" aria-label="Signup or sign in">
+              <button type="button" role="tab" id="tabSignup" aria-selected="true" aria-controls="signupForm">Create account</button>
+              <button type="button" role="tab" id="tabLogin" aria-selected="false" aria-controls="loginForm">Sign in</button>
+            </div>
+
+            <div id="authAlert" class="form-alert form-alert-error" hidden role="alert"></div>
+
+            <form class="stack" id="signupForm" role="tabpanel" aria-labelledby="tabSignup" novalidate>
+              <label for="signupName">Name or trading name
+                <input id="signupName" name="displayName" autocomplete="name" required>
+              </label>
+              <label for="signupEmail">Email
+                <input id="signupEmail" name="email" type="email" autocomplete="email" required>
+              </label>
+              <label for="signupPassword">Password
+                <input id="signupPassword" name="password" type="password" autocomplete="new-password" minlength="8" required>
+                <small class="hint">At least 8 characters.</small>
+              </label>
+              <button class="button button-primary submit" type="submit"><span class="button-label">Create my account</span></button>
+              <p class="form-note">You choose what appears publicly in the next step.</p>
+            </form>
+
+            <form class="stack" id="loginForm" role="tabpanel" aria-labelledby="tabLogin" novalidate hidden>
+              <label for="loginEmail">Email
+                <input id="loginEmail" name="email" type="email" autocomplete="email" required>
+              </label>
+              <label for="loginPassword">Password
+                <input id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+              </label>
+              <button class="button button-primary submit" type="submit"><span class="button-label">Sign in</span></button>
+            </form>
+          </div>
+
+          <aside class="portal-aside">
+            <div class="status-card">
+              <h2>What you get</h2>
+              <p>A profile that works while you don’t.</p>
+              <ul class="checklist">
+                <li data-done="true"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>A listing in the public directory</li>
+                <li data-done="true"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Job requests from your own areas</li>
+                <li data-done="true"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Full control of what’s shown</li>
+                <li data-done="true"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>No commission, no lock-in</li>
+              </ul>
+            </div>
+            <div class="aside-note">
+              <h3>Already listed elsewhere?</h3>
+              <p>That’s fine — nothing here is exclusive. Most pros on TradeConnect use it alongside word of mouth.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATE 2 — signed in: the profile editor. -->
+    <div id="signedInView" hidden>
+      <div class="page-head">
+        <p class="kicker"><i aria-hidden="true"></i> YOUR PROFILE</p>
+        <h1>Your listing, <em>your words.</em></h1>
+        <p class="lede">This is what homeowners see when you come up in the directory. Save as often as you like — nothing is public until you tick the box at the bottom.</p>
+      </div>
+
+      <div class="page-body">
+        <div class="portal-layout">
+          <form class="profile-form" id="profileForm" novalidate>
+            <div id="profileAlert" class="form-alert" hidden role="alert"></div>
+
+            <fieldset class="form-section">
+              <legend>The basics</legend>
+              <label for="displayName">Name customers see
+                <input id="displayName" name="displayName" autocomplete="name" required>
+              </label>
+              <div class="field-row">
+                <label for="trade">Main trade
+                  <select id="trade" name="trade" required></select>
+                </label>
+                <label for="yearsExperience">Years in the trade
+                  <input id="yearsExperience" name="yearsExperience" type="number" min="0" max="70" inputmode="numeric" placeholder="0">
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Where you work</legend>
+              <div class="field-row">
+                <label for="town">Based in
+                  <input id="town" name="town" placeholder="e.g. Centurion" autocomplete="address-level2">
+                </label>
+                <label for="phone">Contact number
+                  <input id="phone" name="phone" type="tel" placeholder="e.g. 082 123 4567" autocomplete="tel">
+                  <small class="hint">Shared with a customer only once you accept their job.</small>
+                </label>
+              </div>
+              <label for="serviceArea">Areas you travel to
+                <input id="serviceArea" name="serviceArea" placeholder="e.g. Pretoria East, Centurion, Midrand" required>
+              </label>
+            </fieldset>
+
+            <fieldset class="form-section">
+              <legend>Your work</legend>
+              <label for="bio">About you
+                <textarea id="bio" name="bio" rows="5" placeholder="What kind of jobs do you take on? What should a customer know before calling you?"></textarea>
+                <small class="hint"><span id="bioCount">0</span> characters. Two or three sentences is plenty.</small>
+              </label>
+              <label for="qualifications">Qualifications or registrations
+                <input id="qualifications" name="qualifications" placeholder="e.g. Registered electrician, COC certified">
+              </label>
+              <label for="calloutFee">Typical call-out fee (R)
+                <input id="calloutFee" name="calloutFee" type="number" min="0" max="100000" inputmode="numeric" placeholder="0">
+                <small class="hint">A rough figure helps customers self-select. Leave at 0 to hide it.</small>
+              </label>
+            </fieldset>
+
+            <div class="publish-toggle">
+              <input id="published" name="published" type="checkbox">
+              <label for="published"><span>List me in the public directory</span><small>Untick at any time to take your profile down without deleting it.</small></label>
+            </div>
+
+            <div class="form-footer">
+              <button class="button button-primary" type="submit"><span class="button-label">Save profile</span></button>
+              <span class="save-state" id="saveState" role="status"></span>
+            </div>
+          </form>
+
+          <aside class="portal-aside">
+            <div class="status-card">
+              <span class="status-badge status-draft" id="statusBadge"><i aria-hidden="true"></i><span id="statusBadgeText">Not listed yet</span></span>
+              <h2 id="statusTitle">Finish your profile</h2>
+              <p id="statusCopy">Complete the steps below and tick the publish box to appear in the directory.</p>
+              <ul class="checklist" id="profileChecklist">
+                <li data-key="basics"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Name and trade</li>
+                <li data-key="area"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Areas you cover</li>
+                <li data-key="bio"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>A description of your work</li>
+                <li data-key="contact"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>A contact number</li>
+                <li data-key="published"><span class="tick" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>Listed publicly</li>
+              </ul>
+            </div>
+            <div class="aside-note">
+              <h3>Where you’ll appear</h3>
+              <p>Published profiles show up in <a href="find-a-pro.html" class="text-link">the directory</a> and are matched against new job requests in your trade.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a class="logo" href="/"><span class="logo-mark" aria-hidden="true">TC</span>tradeconnect</a>
+    <p>Good help, close to home.</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="find-a-pro.html">Find a pro</a><a href="for-pros.html">For professionals</a><a href="index.html#request">Post a job</a>
+    </nav>
+    <span>© 2025 TradeConnect</span>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="pro-portal.js"></script>
+</body>
+</html>

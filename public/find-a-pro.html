@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a local trade professional | TradeConnect</title>
+  <meta name="description" content="Browse trade professionals listed on TradeConnect. Filter by trade and area to find a plumber, electrician, painter or handyman near you.">
+  <link rel="canonical" href="https://fixfinder-sa.netlify.app/find-a-pro.html">
+  <meta name="theme-color" content="#f7f5ef">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TradeConnect">
+  <meta property="og:url" content="https://fixfinder-sa.netlify.app/find-a-pro.html">
+  <meta property="og:title" content="Find a local trade professional | TradeConnect">
+  <meta property="og:description" content="Browse trade professionals listed on TradeConnect. Filter by trade and area.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></symbol>
+      <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4.5 21 20H3l9-15.5Z"/><path d="M12 10v4.5"/><path d="M12 17.2v.3"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="nav">
+    <a class="logo" href="/" aria-label="TradeConnect home"><span class="logo-mark" aria-hidden="true">TC</span>tradeconnect</a>
+    <nav aria-label="Main navigation">
+      <a href="find-a-pro.html" aria-current="page">Find a pro</a><a href="index.html#how" class="nav-hide-sm">How it works</a><a href="for-pros.html">For pros</a>
+      <a href="index.html#request" class="nav-cta">Post a job <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <p class="kicker"><i aria-hidden="true"></i> THE DIRECTORY</p>
+      <h1>Good people, <em>listed.</em></h1>
+      <p class="lede">Every professional here set up their own profile. Filter by trade, or search for the area you need someone in.</p>
+    </div>
+
+    <div class="page-body">
+      <div class="directory-layout">
+        <aside class="filter-rail">
+          <h2 id="filter-heading">Refine</h2>
+          <label class="visually-hidden" for="proSearch">Search by name or area</label>
+          <input class="filter-search" id="proSearch" type="search" placeholder="Search name or area" autocomplete="off">
+          <ul class="trade-filters" id="tradeFilters" aria-labelledby="filter-heading"></ul>
+        </aside>
+
+        <section aria-labelledby="results-heading">
+          <div class="results-head">
+            <h2 id="results-heading" class="visually-hidden">Results</h2>
+            <p class="results-count" id="resultsCount">Loading professionals…</p>
+          </div>
+
+          <ul class="pro-grid" id="proResults" aria-busy="true">
+            <li class="skeleton-card" aria-hidden="true"><div class="skeleton-line block"></div><div class="skeleton-line mid"></div><div class="skeleton-line short"></div><div class="skeleton-line wide"></div><div class="skeleton-line mid"></div></li>
+            <li class="skeleton-card" aria-hidden="true"><div class="skeleton-line block"></div><div class="skeleton-line mid"></div><div class="skeleton-line short"></div><div class="skeleton-line wide"></div><div class="skeleton-line mid"></div></li>
+            <li class="skeleton-card" aria-hidden="true"><div class="skeleton-line block"></div><div class="skeleton-line mid"></div><div class="skeleton-line short"></div><div class="skeleton-line wide"></div><div class="skeleton-line mid"></div></li>
+            <li class="skeleton-card" aria-hidden="true"><div class="skeleton-line block"></div><div class="skeleton-line mid"></div><div class="skeleton-line short"></div><div class="skeleton-line wide"></div><div class="skeleton-line mid"></div></li>
+          </ul>
+
+          <div id="proState" hidden></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a class="logo" href="/"><span class="logo-mark" aria-hidden="true">TC</span>tradeconnect</a>
+    <p>Good help, close to home.</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="find-a-pro.html">Find a pro</a><a href="for-pros.html">For professionals</a><a href="index.html#request">Post a job</a>
+    </nav>
+    <span>© 2025 TradeConnect</span>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="directory.js"></script>
+</body>
+</html>

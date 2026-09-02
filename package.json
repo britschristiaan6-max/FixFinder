@@ -1,0 +1,21 @@
+{
+  "name": "tradeconnect",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "TradeConnect — connecting homeowners with local trade professionals",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@netlify/database": "^2.0.1",
+    "@netlify/functions": "^6.0.0",
+    "@netlify/identity": "^2.0.0",
+    "drizzle-orm": "^1.0.0-beta.22"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "drizzle-kit": "^1.0.0-beta.22",
+    "typescript": "^7.0.2"
+  }
+}

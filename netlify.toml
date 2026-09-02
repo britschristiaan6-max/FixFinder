@@ -1,10 +1,12 @@
-# Static site: no build step, files are served straight from the repo root.
+# Static pages live in public/. Everything outside it — netlify/functions, db/,
+# lib/, node_modules — is build-time only and must never be served, which is why
+# the publish directory is a subfolder rather than the repo root.
 [build]
-  publish = "."
+  publish = "public"
 
-# Sensible baseline security headers. No Content-Security-Policy is set here
-# because the page loads Google Fonts and inline styles; adding one without
-# accounting for those would break rendering.
+[functions]
+  directory = "netlify/functions"
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -12,7 +14,16 @@
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Asset filenames are not content-hashed (style.css, script.js, local-pro.svg
-# keep the same URL across deploys), so no long-lived immutable caching is set —
-# that would serve stale CSS after a push. Netlify's ETag revalidation already
-# makes repeat visits cheap.
+# No Content-Security-Policy is set here: the pages load Google Fonts and the
+# original stylesheet relies on inline style attributes, so a naive policy
+# would break rendering rather than harden anything.
+
+# API responses are per-user and per-request. Caching them anywhere would leak
+# one pro's draft profile to the next visitor.
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
+
+# Asset filenames are not content-hashed, so no immutable caching — that would
+# serve stale CSS after a deploy. Netlify's ETag revalidation covers repeat visits.

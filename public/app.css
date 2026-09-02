@@ -1,0 +1,960 @@
+/* ===========================================================================
+   TradeConnect — shared components, directory, and pro portal.
+
+   style.css stays minified (it is the original landing-page stylesheet and
+   reformatting it would destroy its diff history). Everything added since is
+   written normally here. This file loads AFTER style.css on every page, so
+   equal-specificity rules here intentionally win.
+   ========================================================================= */
+
+/* --- Accessibility primitives ------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 100;
+  padding: 11px 16px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 9px;
+  font: 800 13px Manrope;
+  transform: translateY(-160%);
+  transition: transform .18s ease;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* The original stylesheet removed outlines in places. Restore a visible,
+   on-brand focus ring for keyboard users across every interactive element. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Navigation --------------------------------------------------------- */
+
+.nav nav a[aria-current="page"] {
+  color: var(--ink);
+  position: relative;
+}
+
+.nav nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--orange);
+}
+
+.nav-account {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-account-name {
+  font: 500 11px 'DM Mono';
+  color: #6b7688;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-signout {
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: 700 12px Manrope;
+  color: #535d69;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nav-signout:hover {
+  color: var(--ink);
+}
+
+/* --- Page shell for the secondary pages --------------------------------- */
+
+.page-head {
+  padding: 74px clamp(24px, 8vw, 130px) 0;
+  max-width: 1420px;
+  margin: 0 auto;
+}
+
+.page-head h1 {
+  font-size: clamp(42px, 5.4vw, 74px);
+  line-height: 1;
+  letter-spacing: -4px;
+  font-weight: 800;
+  margin: 20px 0 18px;
+}
+
+.page-head h1 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: var(--blue);
+  letter-spacing: -3px;
+}
+
+.page-head .lede {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0;
+}
+
+.page-body {
+  padding: 44px clamp(24px, 8vw, 130px) 110px;
+  max-width: 1420px;
+  margin: 0 auto;
+}
+
+/* --- Directory: filter rail --------------------------------------------- */
+
+.directory-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 54px;
+  align-items: start;
+}
+
+.filter-rail {
+  position: sticky;
+  top: 104px;
+  border-top: 2px solid var(--ink);
+  padding-top: 18px;
+}
+
+.filter-rail h2 {
+  font: 500 11px 'DM Mono';
+  letter-spacing: .7px;
+  color: #6b7688;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+
+.filter-search {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #deddd8;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: 500 12px Manrope;
+  margin-bottom: 22px;
+}
+
+.filter-search:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px #2456ed15;
+  outline: none;
+}
+
+.trade-filters {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trade-filters button {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  padding: 8px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  font: 700 13px Manrope;
+  color: #535d69;
+  transition: background .15s ease, color .15s ease;
+}
+
+.trade-filters button:hover {
+  background: #e9e6df;
+  color: var(--ink);
+}
+
+.trade-filters button[aria-pressed="true"] {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* --- Directory: results ------------------------------------------------- */
+
+.results-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+  margin-bottom: 26px;
+}
+
+.results-count {
+  font: 500 11px 'DM Mono';
+  color: #6b7688;
+  margin: 0;
+}
+
+.pro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pro-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.pro-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px #1a233014;
+}
+
+.pro-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Initials stand in for a photo — no broken avatar URLs, no upload to manage. */
+.pro-initials {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #1b385b;
+  color: #fff;
+  font: 500 13px 'DM Mono';
+  letter-spacing: -.5px;
+}
+
+.pro-card:nth-child(3n + 2) .pro-initials { background: #e26d4d; }
+.pro-card:nth-child(3n + 3) .pro-initials { background: #2456ed; }
+
+.pro-card h3 {
+  font-size: 17px;
+  letter-spacing: -.6px;
+  margin: 0;
+}
+
+.pro-trade {
+  font: 500 10px 'DM Mono';
+  letter-spacing: .5px;
+  color: #6b7688;
+  margin: 3px 0 0;
+  text-transform: uppercase;
+}
+
+.pro-bio {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+  /* Keep every card the same height regardless of how much a pro wrote. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pro-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 6px;
+}
+
+.pro-tag {
+  font: 700 10px Manrope;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #eceae4;
+  color: #4e5766;
+}
+
+.pro-tag-strong {
+  background: #e8edff;
+  color: #1944d5;
+}
+
+/* --- Loading, empty and error states ------------------------------------ */
+
+.skeleton-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 23px;
+}
+
+.skeleton-line {
+  height: 11px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #ebe8e1 25%, #f4f2ec 50%, #ebe8e1 75%);
+  background-size: 260% 100%;
+  animation: shimmer 1.25s linear infinite;
+  margin-bottom: 10px;
+}
+
+.skeleton-line.wide { width: 100%; }
+.skeleton-line.mid { width: 72%; }
+.skeleton-line.short { width: 44%; }
+.skeleton-line.block { height: 44px; width: 44px; border-radius: 12px; margin-bottom: 16px; }
+
+@keyframes shimmer {
+  from { background-position: 130% 0; }
+  to { background-position: -130% 0; }
+}
+
+.state-panel {
+  border: 1px dashed #cfcbc1;
+  border-radius: 16px;
+  padding: 46px 34px;
+  text-align: center;
+  background: #fdfcf9;
+}
+
+.state-panel h3 {
+  font-size: 21px;
+  letter-spacing: -.9px;
+  margin: 0 0 9px;
+}
+
+.state-panel p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 auto 20px;
+  max-width: 380px;
+}
+
+.state-panel .button {
+  display: inline-block;
+}
+
+.state-icon {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #e8edff;
+  color: var(--blue);
+}
+
+.state-icon.warn {
+  background: #ffede8;
+  color: #cf4f26;
+}
+
+/* --- Forms: errors and feedback ----------------------------------------- */
+
+.field-error {
+  display: block;
+  color: #c2410c;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.job-form input[aria-invalid="true"],
+.job-form select[aria-invalid="true"],
+.job-form textarea[aria-invalid="true"],
+.stack input[aria-invalid="true"],
+.stack select[aria-invalid="true"],
+.stack textarea[aria-invalid="true"] {
+  border-color: #e2703f;
+  box-shadow: 0 0 0 3px #ff704815;
+}
+
+.form-alert {
+  border-radius: 8px;
+  padding: 11px 13px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.55;
+  margin: 0 0 16px;
+}
+
+.form-alert-error {
+  background: #fdece5;
+  color: #a33c14;
+}
+
+.form-alert-info {
+  background: #e8edff;
+  color: #1944d5;
+}
+
+.form-alert-success {
+  background: #e0f7ed;
+  color: #08744b;
+}
+
+/* Buttons keep their label width while showing progress, so nothing jumps. */
+.button[data-busy="true"] {
+  pointer-events: none;
+  opacity: .72;
+}
+
+.button[data-busy="true"] .button-label::after {
+  content: "";
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-left: 9px;
+  vertical-align: -1px;
+  border: 2px solid #ffffff70;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- Icons -------------------------------------------------------------- */
+
+/* Replaces the emoji that used to sit in buttons and step markers. */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.service-pills button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+}
+
+.service-pills .icon {
+  width: 14px;
+  height: 14px;
+  color: #7c8492;
+}
+
+.service-pills button[aria-pressed="true"] .icon {
+  color: #1944d5;
+}
+
+.step-icon .icon {
+  width: 21px;
+  height: 21px;
+}
+
+.lead-type > span .icon {
+  width: 19px;
+  height: 19px;
+}
+
+/* --- Pro portal --------------------------------------------------------- */
+
+.portal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 70px;
+  align-items: start;
+}
+
+.portal-aside {
+  position: sticky;
+  top: 104px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.status-card {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 12px 12px 0 #ffcb4e;
+}
+
+.status-card h2 {
+  font-size: 19px;
+  letter-spacing: -.8px;
+  margin: 0 0 6px;
+}
+
+.status-card p {
+  color: #aeb7c4;
+  font-size: 12px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: 500 9px 'DM Mono';
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.status-badge i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-live {
+  background: #133c2a;
+  color: #48db8d;
+}
+
+.status-draft {
+  background: #40340f;
+  color: #ffcc4d;
+}
+
+.checklist {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid #ffffff1d;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: #b5bfce;
+}
+
+.checklist li[data-done="true"] {
+  color: #fff;
+}
+
+.checklist .tick {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid #ffffff38;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+}
+
+.checklist li[data-done="true"] .tick {
+  background: #48db8d;
+  border-color: #48db8d;
+  color: #0d2a1c;
+}
+
+.aside-note {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  background: var(--paper);
+}
+
+.aside-note h3 {
+  font-size: 13px;
+  margin: 0 0 7px;
+}
+
+.aside-note p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* --- Auth panel --------------------------------------------------------- */
+
+.auth-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 16px 45px #34415a12;
+  max-width: 470px;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 4px;
+  background: #f0eee8;
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  border: 0;
+  background: none;
+  padding: 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  font: 800 12px Manrope;
+  color: #6b7688;
+}
+
+.auth-tabs button[aria-selected="true"] {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 2px 6px #1a233012;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack label {
+  margin-bottom: 15px;
+}
+
+.stack input,
+.stack select,
+.stack textarea {
+  width: 100%;
+  margin-top: 7px;
+  padding: 11px 12px;
+  border: 1px solid #deddd8;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: var(--ink);
+  font: 500 12px Manrope;
+}
+
+.stack textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+
+.stack input:focus,
+.stack select:focus,
+.stack textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px #2456ed15;
+}
+
+.hint {
+  display: block;
+  font-size: 10px;
+  font-weight: 500;
+  color: #8d93a0;
+  margin-top: 5px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.profile-form {
+  background: #fff;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 16px 45px #34415a12;
+}
+
+.form-section {
+  border: 0;
+  padding: 0;
+  margin: 0 0 8px;
+}
+
+.form-section + .form-section {
+  margin-top: 12px;
+  padding-top: 26px;
+  border-top: 1px solid #ebe8e1;
+}
+
+.form-section legend {
+  font: 500 10px 'DM Mono';
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: #6b7688;
+  margin-bottom: 18px;
+}
+
+.publish-toggle {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #f7f5ef;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 4px 0 22px;
+}
+
+.publish-toggle input {
+  width: 17px;
+  height: 17px;
+  margin: 2px 0 0;
+  accent-color: var(--blue);
+  flex: none;
+}
+
+.publish-toggle span {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.publish-toggle small {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.form-footer .button {
+  flex: none;
+}
+
+.save-state {
+  font: 500 11px 'DM Mono';
+  color: #6b7688;
+}
+
+/* --- Featured pros on the landing page ---------------------------------- */
+
+.featured {
+  background: var(--cream);
+}
+
+.featured-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.featured-head h2 {
+  font-size: clamp(36px, 4vw, 54px);
+  line-height: 1.02;
+  letter-spacing: -3px;
+  font-weight: 800;
+  margin: 18px 0 0;
+}
+
+.featured-head h2 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: var(--blue);
+  letter-spacing: -2.5px;
+}
+
+/* --- 404 ---------------------------------------------------------------- */
+
+.notfound {
+  min-height: 64vh;
+  display: grid;
+  place-items: center;
+  padding: 80px clamp(24px, 8vw, 130px);
+  text-align: center;
+}
+
+.notfound .code {
+  font: 500 12px 'DM Mono';
+  letter-spacing: 1px;
+  color: var(--orange);
+  margin: 0 0 14px;
+}
+
+.notfound h1 {
+  font-size: clamp(44px, 6vw, 78px);
+  letter-spacing: -4px;
+  line-height: 1;
+  margin: 0 0 18px;
+  font-weight: 800;
+}
+
+.notfound h1 em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: var(--blue);
+}
+
+.notfound p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto 28px;
+}
+
+/* --- Footer additions --------------------------------------------------- */
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.footer-links a {
+  color: #9ca6b5;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .portal-layout,
+  .directory-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .portal-aside,
+  .filter-rail {
+    position: static;
+  }
+
+  .trade-filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .trade-filters button {
+    width: auto;
+    border: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 800px) {
+  .page-head {
+    padding-top: 46px;
+  }
+
+  .page-body {
+    padding-bottom: 74px;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .featured-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .profile-form,
+  .auth-card {
+    padding: 22px;
+  }
+
+  .form-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .footer-links {
+    margin-left: 0;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  /* The signed-in email is the first thing to go when space is tight. */
+  .nav-account-name {
+    display: none;
+  }
+}
+
+/* Every animation added here opts into the existing reduced-motion contract. */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-line,
+  .button[data-busy="true"] .button-label::after {
+    animation: none;
+  }
+
+  .pro-card:hover {
+    transform: none;
+  }
+
+  .skip-link {
+    transition: none;
+  }
+}
